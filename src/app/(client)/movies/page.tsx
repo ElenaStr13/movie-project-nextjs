@@ -1,60 +1,29 @@
-"use client"; // This is a client component
-import React, {useState} from 'react';
-
+import {getAllMovies} from "@/services/apiService";
 import MoviesList from "@/components/movies/moviesList/MoviesList";
-import {useSearchParams} from "next/navigation"
+import Paginate from "@/components/Paginate";
+import Link from "next/link";
+import css from "@/app/(client)/movies/page.module.css"
+import {FC, PropsWithChildren} from "react";
 
 
-import useSWR from "swr";
-import {baseURL} from "@/constants/urls";
-import {fetcher} from "@/constants/fetcher";
-import {apiKey} from "@/services/movieService";
+interface IProps extends PropsWithChildren {
+    searchParams?: {
+        page?: number;
+    };
+}
+const MoviesPage: ({searchParams}: { searchParams: any }) => Promise<JSX.Element>  = async ({searchParams}) => {
 
-
-
-
-const MoviesPage = () => {
-    // const [query, setQuery] = useSearchParams({page: '1'});
-    // const [previous, setPrevious] = useState( 0);
-    // const page = +query.get('page') || 1;
-
-    // `${baseURL}/discover/movie?${apiKey}&include_adult=false&language=en-US&page=1`,
-
-    const { data: allMovies, error,isLoading } = useSWR(
-        `${baseURL}/discover/movie?${apiKey}&include_adult=false&language=en-US&page=1`,
-        fetcher
-    );
-    if (isLoading) {
-        return "Loading";
-    }
-
-
-    // const prev = () => {
-    //     setQuery(prev => {
-    //         prev.set('page', (+prev.get('page') - 1).toString());
-    //         console.log("prev" + page)
-    //         setPrevious(page);
-    //         return prev
-    //     })
-    // }
-    //
-    // const next = () => {
-    //     setQuery(next => {
-    //         next.set('page', (+next.get('page') + 1).toString());
-    //         return next
-    //     })
-    // }
-
+    const page = searchParams?.page || 1;
+    let allMovies = await  getAllMovies(page);
 
     return (
         <div>
-            < MoviesList movies={allMovies.results} />
-                           {/*<div >*/}
-            {/*    <button onClick={prev} >Prev page</button>*/}
-            {/*    <div>{page}</div>*/}
-            {/*    <button onClick={next} >Next page</button>*/}
-            {/*</div>*/}
-
+            < MoviesList movies={allMovies.results}/>
+            <div >
+                <Link className={css.pagntn} href={`/movies/?&page=${Number(page)-1}`}>Prev</Link>
+                <div>{page}</div>
+                <Link className={css.pagntn} href={`/movies/?&page=${Number(page)+1}`}>Next</Link>
+            </div>
         </div>
     );
 };

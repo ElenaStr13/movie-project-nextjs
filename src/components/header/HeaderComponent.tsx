@@ -17,9 +17,6 @@ const HeaderComponent = () => {
                 <li>
                     <ClientComponent path={'/genres'}>genres page</ClientComponent>
                 </li>
-                {/*<li>*/}
-                {/*    <ClientComponent path={'/meals'}>meals page</ClientComponent>*/}
-                {/*</li>*/}
             </ul>
         </div>
     );

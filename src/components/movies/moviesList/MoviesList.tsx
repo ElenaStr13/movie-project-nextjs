@@ -12,7 +12,7 @@ const MoviesList: FC<IProps> =  ({movies}) => {
     return (
         <div className={css.allMoviesList}>
         <div className={css.moviesList} >
-            {movies.map(movie => <Movie movie={movie} key={movie.id}/>)}
+            {movies && movies.map(movie => <Movie movie={movie} key={movie.id}/>)}
         </div>
 
         </div>

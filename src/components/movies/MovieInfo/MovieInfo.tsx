@@ -54,7 +54,7 @@ console.log(movie)
                 </div>
             </div>
             <div className={css.overView}>
-                <h4>Overview</h4>
+                <h4 className={css.tittle}>Overview</h4>
                 <p>{overview}</p>
             </div>
         </div>

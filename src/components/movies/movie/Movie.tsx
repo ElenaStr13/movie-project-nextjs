@@ -1,10 +1,12 @@
-import {useNavigate} from "react-router-dom";
+
 import {FC, PropsWithChildren} from "react";
 
 import {IMovie} from "@/interfaces/movieInterface";
-import {baseURL, baseUrlImage} from "@/constants/urls";
+import {baseUrlImage} from "@/constants/urls";
 import css from "./Movie.module.css";
 import Link from "next/link";
+import {apiKey} from "@/services/apiService";
+//import {fetchAPI} from "@/services/movieService";
 //import {StarsRating} from "../StarsRaring";
 
 interface IProps extends PropsWithChildren {
@@ -12,14 +14,14 @@ interface IProps extends PropsWithChildren {
 }
 const Movie: FC<IProps> = ({movie}) => {
 
+
     const {
         poster_path,
         id,
         original_title,
         vote_average
     } = movie;
-    // const navigate = useNavigate();
-    // onClick={() => navigate(`/3/movie/${id.toString()}`, {state: {movie}})}
+   let  movieId=id;
     //<Link href={{pathname: '/movie/' + movie.id, query: {data: JSON.stringify(movie)}}}>
 
     // const click = () => {
@@ -29,7 +31,7 @@ const Movie: FC<IProps> = ({movie}) => {
 
     return (
         <div className={css.moviesCard}>
-            <Link href={{pathname: 'movie/'+ movie.id, query: {data: JSON.stringify(movie.id)}}}>
+            <Link href={{pathname:`/movie/${+id.toString()}?${apiKey}`}}>
             {poster_path?
                 <img className={css.image} src={baseUrlImage + poster_path} alt={original_title}></img>
                 :

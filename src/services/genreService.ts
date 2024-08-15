@@ -14,13 +14,14 @@ export const options = {
     },
 };
 
-export const getAllMovies = async (page:number,query?: string):IRes<ISomeData> => {
-      const res = await fetch(`${baseURL}/${urls.movies.base}?${apiKey}${query}&page=${page}`, options);
+export const getAllGenres = async (query?: string):IRes<ISomeData> => {
+    const res = await fetch(`${baseURL}/${urls.genres.base}?${apiKey}${query}`, options);
 
     return res.json();
+
 };
-export const getMovieId = async (movieId:number):IRes<IMovie> => {
-    const res = await fetch(`${baseURL}/${urls.movies.byId(movieId)}?${apiKey}`, options);
+export const getGenreId = async (genreId:number):IRes<IMovie> => {
+    const res = await fetch(`${baseURL}/${urls.genres.byGenreId(genreId)}?${apiKey}`, options);
 
     return res.json();
 };

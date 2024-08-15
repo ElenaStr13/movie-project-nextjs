@@ -25,7 +25,8 @@
     border-radius: 5px;
 
 }
-h4:first-child {
+/*:first-child*/
+.tittle {
     margin-top: 0;
 }
 .imgInfo div:last-child {
