@@ -1,29 +1,26 @@
 import React, {FC} from 'react';
-//import Link from "next/link";
+
 import {MovieInfo} from "@/components/movies/MovieInfo/MovieInfo";
 import {IMovie} from "@/interfaces/movieInterface";
-import {apiKey, getAllMovies, getMovieId} from "@/services/apiService";
-//import {IMovie} from "@/interfaces/movieInterface";
+import {getMovieId} from "@/services/apiService";
 
 
 interface IProps {
-    movieId: number;
-    params:any;
+    searchParams?: {
+        data: string | undefined
+    };
     movie:IMovie
 }
 
-const UserPage: FC<IProps> =  async ({params}) => {
-     const movieId = params.movieId;
-     console.log(movieId)
-     let movie =  await getMovieId(movieId);
-    // console.log(movie)
+const MoviePage: FC<IProps> =  async ({searchParams}) => {
+
+    let movieId:string = searchParams?.data;
+    let movie =  await getMovieId(Number(movieId));
 
     return (
         <div>
-            page fot movie
-            {movie && <MovieInfo movie={movie}/>}
+            {movie && <MovieInfo movie={movie} key={movie.id}/>}
         </div>
     );
 };
-
-export default UserPage;
+export default MoviePage;

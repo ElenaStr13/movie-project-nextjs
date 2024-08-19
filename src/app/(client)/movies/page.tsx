@@ -1,6 +1,6 @@
 import {getAllMovies} from "@/services/apiService";
 import MoviesList from "@/components/movies/moviesList/MoviesList";
-import Paginate from "@/components/Paginate";
+//import Paginate from "@/components/Paginate";
 import Link from "next/link";
 import css from "@/app/(client)/movies/page.module.css"
 import {FC, PropsWithChildren} from "react";
@@ -18,11 +18,11 @@ const MoviesPage: ({searchParams}: { searchParams: any }) => Promise<JSX.Element
 
     return (
         <div>
-            < MoviesList movies={allMovies.results}/>
-            <div >
-                <Link className={css.pagntn} href={`/movies/?&page=${Number(page)-1}`}>Prev</Link>
+            <MoviesList movies={allMovies.results}/>
+            <div className={css.pagination} >
+                <Link className={css.pagntn} href={`/movies/?&page=${Number(page)-1}`}>Prev page</Link>
                 <div>{page}</div>
-                <Link className={css.pagntn} href={`/movies/?&page=${Number(page)+1}`}>Next</Link>
+                <Link className={css.pagntn} href={`/movies/?&page=${Number(page)+1}`}>Next page</Link>
             </div>
         </div>
     );

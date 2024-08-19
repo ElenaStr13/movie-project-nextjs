@@ -1,8 +1,9 @@
 import {baseURL, urls} from "@/constants/urls";
 import {IRes} from "@/types/responceType";
 import {IMovie, ISomeData} from "@/interfaces/movieInterface";
+import {apiKey} from "@/services/apiService";
 
-export const apiKey = "api_key=dc6051c5b39828a64a4833d874930142";
+
 
 
 export const options = {
@@ -20,8 +21,13 @@ export const getAllGenres = async (query?: string):IRes<ISomeData> => {
     return res.json();
 
 };
-export const getGenreId = async (genreId:number):IRes<IMovie> => {
-    const res = await fetch(`${baseURL}/${urls.genres.byGenreId(genreId)}?${apiKey}`, options);
-
+export const getByGenreId = async (genreId?: number):IRes<IMovie[]> => {
+    const res = await fetch(`${baseURL}${urls.movies.base}?${apiKey}&with_genres=${genreId}`, options);
+    console.log(res)
     return res.json();
+
 };
+//apiService.get(`${urls.movies.base}?api_key=&page=${page}&with_genres=${id_genre}`)
+///discover/movie?with_genres=${with_genres}&page=${page}
+//api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=80
+

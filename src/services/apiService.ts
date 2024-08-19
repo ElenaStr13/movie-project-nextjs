@@ -2,7 +2,7 @@ import {baseURL, urls} from "@/constants/urls";
 import {IRes} from "@/types/responceType";
 import {IMovie, ISomeData} from "@/interfaces/movieInterface";
 
-export const apiKey = "api_key=dc6051c5b39828a64a4833d874930142";
+export const apiKey = "api_key=5567f4a7a5d339c00abd68cab60816d7";
 
 
 export const options = {

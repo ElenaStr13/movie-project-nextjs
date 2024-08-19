@@ -5,10 +5,11 @@ import css from './MovieInfo.module.css';
 import {IGenre} from "@/interfaces/genreInterface";
 import {IMovie} from "@/interfaces/movieInterface";
 import {baseUrlImage} from "@/constants/urls";
-
+import {StarsRating} from "@/components/StarsRating/StarsRating";
+import {Genre} from "@/components/genres/Genre";
 
 // import {Genre} from "../GenresContainer/Genre";
-// import {StarsRating} from "../StarsRaring";
+
 
 interface IProps extends PropsWithChildren {
     movie:IMovie
@@ -34,20 +35,20 @@ console.log(movie)
                 <div>
                     <div className={css.rating}>
                         <div>Rating</div>
-                    {/*    <StarsRating voteAverage={vote_average}/>*/}
-                    {/*</div>*/}
-                    {/*<div>Genres:</div>*/}
-                    {/*<div className={css.genres}>*/}
-                    {/*    {genres.map((genre, index) => (*/}
-                    {/*        <Genre*/}
-                    {/*            key={index}*/}
-                    {/*            genre={genre}*/}
-                    {/*            onGenreClick={onGenreClick}*/}
-                    {/*            isActive={genre.id === activeGenreId}*/}
-                    {/*        />*/}
-                    {/*    ))}*/}
+                        <StarsRating voteAverage={vote_average}/>
                     </div>
-                    <div >Original language</div>
+                    <div>Genres:</div>
+                    <div className={css.genres}>
+                        {genres.map((genre, index) => (
+                            <Genre
+                                key={index}
+                                genre={genre}
+                                //onGenreClick={onGenreClick}
+                                //isActive={genre.id === activeGenreId}
+                            />
+                        ))}
+                    </div>
+                    <div>Original language</div>
                     <p className={css.originalLanguage}>{original_language}</p>
                     <div>Release Date</div>
                     <p>{release_date}</p>

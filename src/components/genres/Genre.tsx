@@ -1,8 +1,8 @@
 import {FC, PropsWithChildren} from "react";
-import {useNavigate} from "react-router-dom";
 
 import css from './Genre.module.css';
 import {IGenre} from "@/interfaces/genreInterface";
+import Link from "next/link";
 
 interface IProps extends PropsWithChildren {
     genre: IGenre,
@@ -15,11 +15,13 @@ const Genre: FC<IProps> = ({genre}) => {
     // const navigate = useNavigate();
     // onClick={() => navigate(`/genres/${id}`)}
 
+
     return (
-        <div >
-            <button className={css.genre}
-                    >
-                {name}</button>
+        <div>
+            <button className={css.genre}>
+                <Link className={css.genreIns} href={{pathname: `/genres/${id}`, query: {data: id}}}>
+                {name} </Link>
+            </button>
         </div>
     );
 };

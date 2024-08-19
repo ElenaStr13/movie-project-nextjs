@@ -14,7 +14,7 @@ const Genres: FC<IProps> =  ({genres}) => {
         <div >
 
             <div  className={css.genres}>
-                {/*{genres && genres.map(genre => <Genre genre={genre} key={genre.id}/>)}*/}
+                {genres && genres.map(genre => <Genre genre={genre} key={genre.id}/>)}
             </div>
 
         </div>
