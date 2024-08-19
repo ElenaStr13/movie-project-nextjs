@@ -2,6 +2,7 @@
 import React, {FC, PropsWithChildren, useState} from "react";
 import css from "@/components/search/search.module.css";
 import {useNavigate} from "react-router";
+import {useRouter} from "next/navigation";
 
 interface IProps extends PropsWithChildren {
 
@@ -10,12 +11,14 @@ interface IProps extends PropsWithChildren {
 const Searchcomponent: FC<IProps> = () => {
     const [search, setSearch] = useState<string>('');
    // const navigate = useNavigate();
+    const router = useRouter();
     const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(ev.target.value)
+        setSearch(ev.target.value);
     };
-    const searchTitle = ( ) => {
-        console.log("search")
-        console.log(search)
+    const searchTitle = (e ) => {
+        e.preventDefault();
+        //console.log(search)
+        router.push('/3/search/movie')
         //dispatch(searchActions.getAll(query))
        // navigate('/3/search/movie')
     }
