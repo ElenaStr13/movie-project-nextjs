@@ -1,0 +1,14 @@
+/*search*/
+.search {
+    margin-right: 20px;
+    color: var(--letters-color);
+    padding: 5px 35px;
+    border-radius: 10px;
+    background-color: var(--background-color);
+}
+.btnSearch {
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: var(--color);
+    background-color: var(--background-color);
+}

@@ -7,16 +7,19 @@ body {
     background-color: var(--background-color);
     color: var(--color);
     --text-color: var(--text-color);
+    --text-search: var(--letters-color);
 }
 
 body.dark {
     --color: #f3adad;
     --background-color: #706e6e;
     --text-color: #fff;
+    --letters-color: snow;
 }
 
 body.light {
     --background-color: snow;
     --text-color: rgba(23, 22, 22, 0.84);
     --color: rgba(23, 22, 22, 0.84);
+    --letters-color: rgba(23, 22, 22, 0.84);
 }

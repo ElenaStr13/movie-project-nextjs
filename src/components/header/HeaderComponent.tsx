@@ -6,11 +6,11 @@ import Link from "next/link";
 import {ThemeCheckbox} from "@/components/themeCheckbox/ThemeCheckbox";
 import {UserInfo} from "@/components/user/UserInfo";
 import imgSrc from '../../../public/logo.png';
+import {Searchcomponent} from "@/components/search/Searchcomponent";
 
 
 const HeaderComponent = () => {
-    //const [query, setQuery] = useState<string>('');
-    // onClick={searchTitle}
+
     return (
         <div className={css.header}>
                     <Link href={'/'} className={css.photoLogo}>
@@ -18,16 +18,7 @@ const HeaderComponent = () => {
                     </Link>
                     <Link href={'/movies'}>Movies</Link>
                     <Link href={'/genres'}>Genres</Link>
-            <div>
-                <input
-                    type='text'
-                    placeholder='Search...'
-                   // value={query}
-                    //onChange={handleChange}
-                    className={css.search}
-                />
-                <button  className={css.btnSearch}>Search</button>
-            </div>
+             <Searchcomponent/>
             <ThemeCheckbox/>
             <UserInfo/>
         </div>
