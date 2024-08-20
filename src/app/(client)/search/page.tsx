@@ -1,7 +1,8 @@
-import {apiKey} from "@/services/apiService";
+import {apiKey, getAllMovies} from "@/services/apiService";
 import {PropsWithChildren} from "react";
 import Results from "@/components/results/Results";
 import {baseURL} from "@/constants/urls";
+import {getSearch} from "@/services/searchService";
 
 interface IProps extends PropsWithChildren {
     params: {
@@ -11,16 +12,13 @@ interface IProps extends PropsWithChildren {
 }
 const SearchPage: ({searchParams}: { searchParams: any }) => Promise<JSX.Element>  = async ({searchParams}) => {
 
-    //const search = params.query;
    const search = searchParams.query;
-   // const page = searchParams?.page || 1;
-    let res = await fetch(
-        `${baseURL}/search/movie?api_key=${apiKey}&query=${search}&language=en-US&page=1&include_adult=true`
-    );
-    const data = await res.json();
-    const results = data.results;
+   //  let res = await fetch(
+   //      `${baseURL}/search/movie?api_key=${apiKey}&query=${search}&language=en-US&page=1&include_adult=true`
+   //  );
+    let allResults = await  getSearch(search);
+    const results = allResults.results;
     // '/search/movie?query=';
-    //`${urls.search}${text}`
 
     return (
         <div>

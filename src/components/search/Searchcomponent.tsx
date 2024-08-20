@@ -1,16 +1,10 @@
 'use client'
 import React, {FC, PropsWithChildren, useState} from "react";
 import css from "@/components/search/search.module.css";
-import {useNavigate} from "react-router";
 import {useRouter} from "next/navigation";
 
-interface IProps extends PropsWithChildren {
-
-}
-
-const Searchcomponent: FC<IProps> = () => {
+const Searchcomponent = () => {
     const [query, setQuery] = useState<string>('');
-   // const navigate = useNavigate();
     const router = useRouter();
     const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         ev.preventDefault();
@@ -18,10 +12,7 @@ const Searchcomponent: FC<IProps> = () => {
     };
     const searchTitle = (e ) => {
         e.preventDefault();
-        //console.log(search)
-        router.push('/3/search/movie')
-        //dispatch(searchActions.getAll(query))
-       // navigate('/3/search/movie')
+        router.push(`/3/search/movie?query=${query}`)
     }
     return (
         <div>
