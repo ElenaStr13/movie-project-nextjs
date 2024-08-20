@@ -1,25 +1,26 @@
-import {getAllMovies} from "@/services/apiService";
-import MoviesList from "@/components/movies/moviesList/MoviesList";
-//import Paginate from "@/components/Paginate";
-import Link from "next/link";
-import css from "@/app/(client)/movies/page.module.css"
-import {FC, PropsWithChildren} from "react";
+import {apiKey} from "@/services/apiService";
+import {PropsWithChildren} from "react";
 import Results from "@/components/results/Results";
-
+import {baseURL} from "@/constants/urls";
 
 interface IProps extends PropsWithChildren {
-    searchParams?: {
+    params: {
         page?: number;
+        query?: string
     };
 }
-export default async function SearchPage({ params }) {
-    const searchTerm = params.searchTerm;
+const SearchPage: ({searchParams}: { searchParams: any }) => Promise<JSX.Element>  = async ({searchParams}) => {
+
+    //const search = params.query;
+   const search = searchParams.query;
    // const page = searchParams?.page || 1;
     let res = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&query=${searchTerm}&language=en-US&page=1&include_adult=true`
+        `${baseURL}/search/movie?api_key=${apiKey}&query=${search}&language=en-US&page=1&include_adult=true`
     );
     const data = await res.json();
     const results = data.results;
+    // '/search/movie?query=';
+    //`${urls.search}${text}`
 
     return (
         <div>
@@ -31,4 +32,4 @@ export default async function SearchPage({ params }) {
     );
 };
 
-export default MoviesPage;
+export default SearchPage;

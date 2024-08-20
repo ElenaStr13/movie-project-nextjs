@@ -9,11 +9,12 @@ interface IProps extends PropsWithChildren {
 }
 
 const Searchcomponent: FC<IProps> = () => {
-    const [search, setSearch] = useState<string>('');
+    const [query, setQuery] = useState<string>('');
    // const navigate = useNavigate();
     const router = useRouter();
     const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(ev.target.value);
+        ev.preventDefault();
+        setQuery(ev.target.value);
     };
     const searchTitle = (e ) => {
         e.preventDefault();
@@ -27,7 +28,7 @@ const Searchcomponent: FC<IProps> = () => {
             <input
                 type='text'
                 placeholder='Search...'
-                value={search}
+                value={query}
                 onChange={handleChange}
                 className={css.search}
             />
